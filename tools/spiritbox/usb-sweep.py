@@ -21,6 +21,7 @@ def main():
     parser.add_argument('--interval-ms', type=int, choices=(100, 150, 200, 250, 300, 350), default=200)
     parser.add_argument('--seconds', type=float, default=8)
     parser.add_argument('--direction', choices=('forward', 'reverse'), default='forward')
+    parser.add_argument('--single-pass', action='store_true', help='stop at the final frequency instead of wrapping')
     args = parser.parse_args()
     if not math.isfinite(args.seconds) or not 0 < args.seconds <= 30:
         parser.error('--seconds must be greater than zero and at most 30')
@@ -46,6 +47,7 @@ def main():
     original = None
     log_enabled_here = False
     sends = []
+    frequencies_sent = []
     latest_at = 0
 
     def collect(seconds):
@@ -107,9 +109,13 @@ def main():
             if now >= next_send:
                 tune(freq)
                 sends.append(time.monotonic())
+                frequencies_sent.append(freq)
                 # No catch-up bursts when Windows scheduling runs late.
                 next_send = sends[-1] + args.interval_ms / 1000
                 freq += step
+                if args.single_pass and not args.lower_hz <= freq <= args.upper_hz:
+                    report['single_pass_completed'] = True
+                    break
                 if freq > args.upper_hz:
                     freq = args.lower_hz
                 elif freq < args.lower_hz:
@@ -151,6 +157,7 @@ def main():
                     port.close()
             gaps = [(b - a) * 1000 for a, b in zip(sends, sends[1:])]
             report['commands_sent'] = len(sends)
+            report['frequencies_sent_hz'] = frequencies_sent
             if gaps:
                 report['host_send_interval_ms'] = dict(min=min(gaps), median=statistics.median(gaps), max=max(gaps))
             report['limitation'] = 'Host command cadence and 500 ms status samples; not RF tune-complete or audio timing.'

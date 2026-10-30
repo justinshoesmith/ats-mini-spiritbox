@@ -16,6 +16,14 @@ Power on, connect a USB data cable, enable Settings -> USB Port -> Ad hoc, and s
 
 Add `--direction reverse` for reverse sweep. The upper endpoint must align with the lower endpoint and step. The utility does not switch bands. For MW2/AM, a short Australian-grid example is `--lower-hz 702000 --upper-hz 810000 --step-hz 9000 --interval-ms 200 --seconds 5`. Execution and restoration have been exercised on the radio; the owner reports MW audio with silent gaps. No soft-mute/squelch overrides were applied. See the integration record for observations and next measurements.
 
+For one complete FM pass without wrapping (about 23 seconds at observed host cadence):
+
+```powershell
+& ./.local/esptool/Scripts/python.exe tools/spiritbox/usb-sweep.py --port COM3 --lower-hz 87500000 --upper-hz 108000000 --step-hz 100000 --interval-ms 100 --seconds 30 --single-pass
+```
+
+`--single-pass` stops after the final endpoint; `--seconds` remains the maximum runtime, so a slower interval needs a smaller range to complete within the 30-second bound. Reports mark `single_pass_completed` only when the final endpoint was sent and include the commanded frequency list. The full FM example was exercised successfully with owner-confirmed clear station fragments and telemetry-confirmed original-frequency restoration.
+
 Ctrl+C stops and attempts restoration, as does normal completion. Wait for the restoration result and check the displayed tuning. It preserves detected monitor enablement on the current connection, but disconnecting can reset the firmware's per-session monitor state. A USB disconnect or power failure may prevent restoration; inspect the starting status in the JSON log and restore manually if necessary. Upstream's normal tuning commands schedule band/VFO persistence; the prototype cannot guarantee recovery after forced termination.
 
 Reports under `.local/logs/usb-sweep/` contain command counts, host timing, sampled receiver status and restoration results. Host timing is not receiver/audio latency. See `docs/spiritbox/integration.md` for actual trials and design conclusions.

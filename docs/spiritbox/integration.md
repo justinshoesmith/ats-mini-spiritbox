@@ -6,7 +6,7 @@
 
 Add one Spirit Box item to the existing main menu and one small `SpiritBox.cpp/.h` module. Use a main-loop timer to advance one frequency at a time. Reuse receiver setup, normal tuning, encoder/button dispatch, sprite rendering and the existing theme fields. Keep all sweep preferences session-local initially. No new library, task, timer interrupt, network requirement or hardware is needed.
 
-Start with FM 87.5–108 MHz, 100 kHz steps, forward sweep, 200 ms step interval, initially stopped. Offer 100/150/200/250/300/350 ms intervals. FM 50 kHz and MW 9 kHz steps are useful first alternatives; optional finer steps can follow measurements. Use a clear interval label: time between tuning commands, including tuning overhead, rather than a promise of that much audible dwell. This is an engineering starting point, not a measured minimum receiver settling time.
+Start with FM 87.5–108 MHz, 100 kHz steps, forward sweep, nominal 100 ms step interval, initially stopped. The later full-band USB trial produced owner-confirmed clear station fragments at this setting (about 109 ms actual host cadence). Offer 100/150/200/250/300/350 ms intervals. FM 50 kHz and MW 9 kHz steps are useful first alternatives; optional finer steps can follow measurements. Use a clear interval label: time between tuning commands, including tuning overhead, rather than a promise of that much audible dwell. This is an experimentally supported starting point, not a measured minimum receiver settling time or a promise of identical native timing.
 
 Use existing VHF and MW2 receiver setup without changing their stored band definitions. A suggested Australian MW window is 531–1602 kHz in 9 kHz steps; a later 10 kHz-region option should use its own aligned endpoints. Mode-specific limits must stay within the selected upstream band's limits. Wrap last valid grid point to first valid grid point, in either direction, without an off-grid endpoint. Do not sweep SSB in the first version. A single Si4732 tunes one frequency/band at a time; simultaneous AM/FM is outside scope.
 
@@ -101,7 +101,15 @@ At the owner's request, repeated FM sweeping around the current 106.50 MHz tunin
 
 Owner rejected the listening result: it sounded mostly like static and long stretches around 106.5 MHz, rather than useful broadcast fragments. Log inspection shows multiple changing frequencies across the requested range in both passes; the radio was not stationary in the sampled status. However, the test comprised only seven frequency points, repeating the same station neighbourhood about every 1.4 seconds at the slower cadence or 0.76 seconds at the faster cadence. Telemetry acquisition and restoration also added stationary periods around the eight-second sweeps. These design choices made this a poor demonstration of a broad-band spirit-box sweep. Sampled tuning changes do not contradict the owner's audio assessment and do not prove useful audible fragments.
 
-Next proposed FM trial: a single forward pass across 87.5–108 MHz in 100 kHz steps at nominal 100 ms, about 22–23 seconds using observed host cadence, with explicit start/finish cues and no repeated narrow loop. Confirm reception at a normal station first if speech fragmentation is the criterion. Do not treat the earlier "audible throughout" report as proof of satisfying audio quality. This wider trial has not yet been performed.
+The subsequent full-band pass below replaced this inadequate narrow test. Do not treat the earlier "audible throughout" report alone as proof of satisfying audio quality.
+
+### Successful full-band FM pass
+
+With approval, ran one forward pass across **87.5–108 MHz**, **100 kHz** steps, nominal **100 ms** interval, around 17:39 Brisbane time on 30 October 2026. Added `--single-pass` to the USB prototype so it stops at the final endpoint instead of wrapping. The existing 30-second time bound remains a safety limit, not the intended pass duration.
+
+The command log contains all **206** expected frequencies, in order, from 87,500,000 through 108,000,000 Hz. Host send intervals were 109/109/110 ms min/median/max, approximately 22.4 seconds from first to last command. Receiver telemetry sampled frequencies progressing across the band, from 87.7 through 107.7 MHz; its 500 ms sampling does not certify every individual RF tuning event. Original VHF/FM **106.50 MHz**, volume **30**, was restored and verified. No audio property or firmware changes were made.
+
+Owner explicitly reported **"Clear station fragments across the band"**. This is the first full-band, owner-confirmed useful FM fragmentation result and supports the range/step/interval choice for the initial native mode. Keep AM continuity and exact native timing as separate validation items. Private evidence: `.local/logs/usb-sweep/20261030T073856597589Z.json`.
 
 ### Remaining checks
 
