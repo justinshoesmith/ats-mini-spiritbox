@@ -1,6 +1,6 @@
 # Spirit Box integration investigation
 
-30 October 2026. Source inspected: upstream v2.45, with PU2CLR SI4735 tag 2.1.8. **Native-mode source is implemented and the OSPI compile passed; candidate not installed.** The installed radio remains official v2.45 OSPI. Owner authorized the compile and confirmed completion of the earlier UTC+10 correction. The design and experiment record below explain the implementation choices; see `operating.md` for controls and `build.md` for build evidence.
+30 October 2026. Source inspected: upstream v2.45, with PU2CLR SI4735 tag 2.1.8. **Native-mode source is implemented, compiled and installed with approval.** The radio runs experimental v2.45 SB-dev OSPI at source `82dd43d`. The design and earlier USB experiment record below explain the implementation choices; see `operating.md` for controls, `build.md` for build evidence and `native-installation.md` for actual native hardware checks and limitations.
 
 ## Source implementation status
 
@@ -10,7 +10,7 @@ Exit restores affected band records and reselects the original receiver context,
 
 The purple palette is a private copy with display-only overrides; `themeIdx`, user palettes, layout preference and splash remain unchanged. A small ghost uses existing primitives. About identifies a future custom build as `SB-dev`; protocol version and upstream compatibility constants remain unchanged.
 
-Validation performed: source/call-path review, upstream prek checks, Git whitespace checks and the subsequently authorized OSPI compile. Compile succeeded, application fits both 3 MiB slots and image hashes validate; see `build.md` for dependency warnings. No new unit tests, rendering run, custom flash or native hardware tests were performed. Do not infer runtime correctness from successful compilation.
+Validation performed: source/call-path review, upstream prek checks, Git whitespace checks and the authorized OSPI compile. Compile succeeded, application fits both 3 MiB slots and image hashes validate; see `build.md` for dependency warnings. Subsequently installed with explicit approval and checked native UI, FM/MW tuning, Exit, an in-mode save, persistence/reboot and owner-operated controls; see `native-installation.md`. No new unit-test suite was added, and not every interaction or audio case has been verified.
 
 ## Recommendation
 

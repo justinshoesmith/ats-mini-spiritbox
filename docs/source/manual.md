@@ -65,7 +65,7 @@ The menu can be invoked by clicking the encoder button and is closed automatical
 * **AVC** - Sets the maximum gain for automatic volume control (not applicable to FM mode). In LSB/USB, short press toggles Hold to disable AVC and hold the current gain. Rotate to resume automatic AVC and adjust the maximum gain. Hold is temporary and clears on band/mode reinitialization or restart; the displayed maximum gain is not a measurement of held gain.
 * **SoftMute** - Sets softmute max attenuation (only applicable to AM/SSB).
 * **Settings** - Settings submenu.
-* **Spirit Box** - Offline FM/MW frequency sweeping with a temporary purple theme. Turn to select a field, click to edit it, then turn and click to finish. Run/Stop starts or pauses; short press also toggles sweeping. Exit restores normal radio tuning and theme. Band changes stop the sweep. Sweep settings are temporary; volume changes remain normal radio volume changes. This custom build is awaiting hardware validation.
+* **Spirit Box** - Experimental offline FM/MW frequency sweeping with a temporary purple theme. Turn to select a field, click to edit it, then turn and click to finish. Run/Stop starts or pauses; short press also toggles sweeping. Exit restores normal radio tuning and theme. Band changes stop the sweep. Sweep settings are temporary; volume changes remain normal radio volume changes.
 
 ## Settings menu
 

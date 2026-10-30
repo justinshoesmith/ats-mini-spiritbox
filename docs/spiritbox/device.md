@@ -5,8 +5,8 @@ Recorded 30 October 2026. Distinguish owner reports from device measurements.
 | Item | Evidence / status |
 | --- | --- |
 | Product | Owner reports AMNVOLT ATS Mini V4, received |
-| Installed firmware | Upgraded to official v2.45 OSPI; verified USB monitor version 245 and About date Oct 22 2026. Original backed-up baseline is v2.33 |
-| Modification history | Original full flash backed up, then approved official upstream upgrade performed; no custom firmware installed |
+| Installed firmware | Experimental native v2.45 SB-dev OSPI, source `82dd43d`; About Oct 30 2026. Both original v2.33 and pre-custom official v2.45 baselines backed up |
+| Modification history | Approved upstream upgrade, then approved native Spirit Box installation; all four image hashes verified for each write |
 | MCU / receiver | esptool confirms ESP32-S3 (QFN56), revision v0.2, 40 MHz crystal; Si4732 remains owner-reported |
 | Enclosure / controls | Owner reports ABS case, colour display, rotary encoder, existing controls, USB-C and rechargeable battery |
 | Wireless | Owner reports Wi-Fi and Bluetooth capability; operation on installed firmware untested |
@@ -35,6 +35,8 @@ A further SHA-256-verified, Explorer-accessible copy was placed in `Documents/AT
 The approved four-image USB update to v2.45 completed with successful esptool hash verification for each image. Live USB monitor and About/System screen confirm v2.45 and working 8 MiB PSRAM. The owner explicitly confirmed normal FM audio and controls, then completion of the UTC+10 correction. AM/SSB and wireless operation remain untested. See the upgrade record for detailed results. Original backup evidence below describes the pre-upgrade baseline.
 
 Subsequent five-second USB sweep trials at requested 200 ms forward and 100 ms reverse intervals completed, with audio audible throughout according to the owner. Both restored the then-current 106.50 MHz FM tuning and verified restoration using telemetry. No native Spirit Box firmware installed; see `integration.md`.
+
+Later installed the native candidate with explicit approval. Fresh pre-install 16 MiB v2.45 backup is in `Documents/ATS Mini Radio Recovery/20261030T090914440Z/`, SHA-256 `177a221b0b2f479e1a327b0d35fe9b21d69e081d984aa828902f1f1b11d49c3d`. Native UI, FM/MW tuning, normal-theme/tuning restoration, in-mode save protection and reboot were exercised. Owner confirms physical controls and Exit work. Native FM audio has fragments with gaps/static. See `native-installation.md` for exact checks and remaining limitations; the earlier sentence above records the state at the USB-trial stage.
 
 Offline partition inspection finds the existing application slots, settings, LittleFS, NVS and coredump within the first 8 MiB. The dump deliberately covers the full physical 16 MiB. The application descriptor contains Arduino core build metadata rather than the radio's displayed version; v2.33 was independently confirmed by the live USB monitor.
 

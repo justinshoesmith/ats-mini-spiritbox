@@ -1,6 +1,6 @@
 # Native OSPI candidate build
 
-30 October 2026. **Compile succeeded; candidate not flashed or hardware-tested.** Source commit `82dd43d` on `spiritbox`, based on upstream v2.45. Owner explicitly authorized compiling after source implementation. Physical custom flashing still requires approval of this candidate.
+30 October 2026. **Compile succeeded; this exact candidate was subsequently installed with approval.** Source commit `82dd43d` on `spiritbox`, based on upstream v2.45. Owner explicitly authorized compiling after source implementation and then approved physical installation. See `native-installation.md` for the actual hardware checks; this document records build provenance.
 
 Command from repository root (local Arduino CLI 1.5.1):
 
@@ -39,4 +39,4 @@ This package includes no device flash dump or credentials. Do not use the genera
 
 ## Outstanding acceptance
 
-Compilation does not verify the rendered UI, tuning cadence/audio, theme restoration, original band/VFO persistence, pending saves, reboot state or sleep/remote/web interactions. These checks are listed in `operating.md` and must be performed on the actual receiver after an approved installation. The radio currently remains on official v2.45, with the original full-flash backup preserved.
+Compilation alone does not verify the rendered UI, tuning cadence/audio, theme restoration, original band/VFO persistence, pending saves, reboot state or sleep/remote/web interactions. The subsequent approved installation exercised a subset of these checks; see `native-installation.md` for evidence and remaining limitations. Both original and pre-custom full-flash backups remain preserved.

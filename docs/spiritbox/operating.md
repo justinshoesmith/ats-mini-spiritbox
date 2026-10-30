@@ -1,8 +1,8 @@
 # Native Spirit Box mode
 
-**OSPI compile succeeded; candidate not installed or hardware-tested.** The radio still runs official upstream v2.45. This document describes the intended controls of the new source changes. See `build.md` for the source commit, sizes, warnings and candidate artifacts.
+**Installed experimental v2.45 SB-dev OSPI build.** Entry, drawing, FM/MW tuning, state persistence/reboot and owner-operated controls/Exit have been checked. See `native-installation.md` for actual results and remaining limitations; `build.md` records source, sizes, warnings and artifacts.
 
-A future custom build shows `SB-dev` in its About version string. The normal serial protocol retains the upstream numeric version for compatibility.
+The installed custom build shows `SB-dev` in its About version string. The normal serial protocol retains the upstream numeric version for compatibility.
 
 ## Controls
 
@@ -28,4 +28,4 @@ Sweep intervals, step selections, direction, Run state and temporary tuning are 
 
 ## Validation still required
 
-The compile-only OSPI build passed with two warnings in unchanged PU2CLR library code. No native hardware test has been run. A custom physical flash requires explicit approval of the prepared build. Verify entry/exit from each normal modulation, both layouts, bounds/wrap, both directions, all controls, mute/squelch, sleep/off-timer, deferred/direct saves, reboot recovery, web/remote interactions and actual FM/MW audio. The earlier USB trials establish useful FM audio on upstream firmware, not correctness of this new native mode.
+The OSPI build passed with two warnings in unchanged PU2CLR library code and was subsequently installed with explicit approval. Native FM audio is reported as some fragments with gaps/static; native AM audio still needs a separate listening check. Additional acceptance remains for entry/exit from every normal modulation, both layouts, all interval/step combinations, mute/squelch, sleep/off-timer and web/remote interactions. These cases must not be inferred from the successful basic persistence/reboot and physical-control checks. Future physical flashes still require explicit approval of the prepared build.
