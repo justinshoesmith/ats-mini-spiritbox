@@ -27,3 +27,4 @@ Study P-SB7/SB7, SB7 Pro and comparable AM/FM sweep receivers in Phase 3 for use
 6. Select a temporary effective display theme without changing persistent `themeIdx` or user palette data. A small embedded static ghost suffices.
 7. Explicitly preserve normal band/VFO/global state through deferred and direct save paths; avoiding new save requests alone does not prevent temporary sweep state from persisting.
 8. USB protocol experiments remain bounded and restore starting tuning. They measure host cadence and sampled receiver status, not RF/audio settling time. Physical custom firmware flashing requires its own explicit approval after a concrete build is ready.
+9. The controlled AM soft-mute-zero listening comparison was inconclusive (owner chose "Worse, or I missed it"). Retain the user's AM soft-mute setting by default; do not claim disabling it improves continuity. Original 4 dB soft-mute, squelch Off, FM 106.50 MHz and volume 20 were restored and verified.
