@@ -16,7 +16,7 @@ uv venv .local/esptool --python 3.12
 uv pip install --python .local/esptool/Scripts/python.exe esptool==5.6.0
 ```
 
-Arduino CLI was downloaded from its [official release](https://github.com/arduino/arduino-cli/releases/tag/v1.5.1). ESP32 platform and firmware libraries are not yet downloaded: upstream profiles install their pinned versions on first compile. No build profile has been selected for the physical unit.
+Arduino CLI was downloaded from its [official release](https://github.com/arduino/arduino-cli/releases/tag/v1.5.1). ESP32 platform and firmware libraries are not yet downloaded: upstream profiles install their pinned versions on first compile. Device identification supports `esp32s3-ospi`; see the inventory for chip evidence. No build has been performed.
 
 `ats-mini/sketch.yaml` pins ESP32 core 3.3.12, PU2CLR SI4735 2.1.8, LovyanGFX 1.2.33, Async TCP 3.5.0 and ESP Async WebServer 3.12.1. Both ESP32-S3 profiles specify 8M flash, 80 MHz CPU, QIO flash and custom partitions; these are upstream build defaults, not measurements of this receiver. OSPI uses `PSRAM=opi`; QSPI uses `PSRAM=enabled`. The default profile is OSPI, so explicitly supply the confirmed profile when a future build is requested. Keep `sketch.yaml` and upstream workflow settings consistent.
 
@@ -29,7 +29,7 @@ Future **compile-only** examples, after hardware identification and when asked:
 
 Run repository checks with `uv run --frozen prek run --all-files`. The installed uv requests a lock refresh with `--locked`; `--frozen` consumes upstream's existing lock without modifying it.
 
-Bootstrap verification: all upstream prek checks passed; backup script PowerShell parsing and rejection of non-USB COM1 passed; esptool read/restore command options were checked against the installed CLI. The actual capture/copy workflow requires the radio and has not been exercised. Firmware builds and hardware tests were not run. Local `core.autocrlf=false` keeps the checkout consistent with upstream's LF policy; no source formatting changes are committed.
+Bootstrap verification: all upstream prek checks passed; backup script PowerShell parsing and rejection of non-USB COM1 passed; esptool read/restore command options were checked against the installed CLI. The actual full-flash capture/copy workflow subsequently succeeded on COM3 with a 16 MiB read and matching local/recovery SHA-256. Post-backup serial status and display capture succeeded. Firmware builds, restoration, audio and physical-control tests were not run. Local `core.autocrlf=false` keeps the checkout consistent with upstream's LF policy; no source formatting changes are committed.
 
 ## Git workflow
 

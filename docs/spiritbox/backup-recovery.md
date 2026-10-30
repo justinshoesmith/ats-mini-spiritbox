@@ -1,6 +1,6 @@
 # Backup and recovery
 
-**Status: prepared, not performed.** No radio USB port was present on 30 October 2026. A SHA-256 manifest must come from actual device data, never from an empty or sample file.
+**Status: completed on 30 October 2026.** COM3 full-flash read captured 16,777,216 bytes. Measured size and SHA-256 match the private recovery copy outside the repository; see [device inventory](device.md) for the digest and locations. The receiver was subsequently reset into its existing v2.33 firmware, with serial status and display capture verified. No restore or firmware update was performed. The following procedure remains available for future captures.
 
 Based on upstream [backup/recovery](https://esp32-si4732.github.io/ats-mini/recovery.html) and Espressif [esptool commands](https://docs.espressif.com/projects/esptool/en/latest/esp32s3/esptool/basic-commands.html). Local tooling uses esptool 5.6.0 and its current hyphenated command names.
 

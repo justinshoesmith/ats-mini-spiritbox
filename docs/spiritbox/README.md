@@ -1,6 +1,6 @@
 # ATS Mini Spirit Box
 
-Phase 1 bootstrap, 30 October 2026 (Australia/Brisbane). **Factory flash backup pending: no radio USB device detected. Do not erase, upgrade or flash.**
+Phase 1 preservation, 30 October 2026 (Australia/Brisbane). **Original full-flash backup completed: 16 MiB, size and SHA-256 verified against a private recovery copy outside the repository.** No firmware was erased, written or upgraded.
 
 - [Device baseline and outstanding evidence](device.md)
 - [Backup, validation and recovery](backup-recovery.md)
@@ -13,4 +13,4 @@ Repository: <https://github.com/justinshoesmith/ats-mini-spiritbox> (fork of <ht
 
 Upstream source layout, MIT license and attribution are retained. Project additions live in `docs/spiritbox/` and `tools/spiritbox/`. Dumps, diagnostics, local tools and environments are excluded from Git. Never force-add device data.
 
-Phase 1 is incomplete until the original full-flash backup and its external recovery copy are verified. No physical identification, backup, restoration, upgrade or radio functionality test has been completed.
+The connected receiver is an ESP32-S3 revision v0.2 with 16 MiB flash and 8 MiB embedded PSRAM (OSPI profile, based on Espressif's chip specification). USB status confirms installed firmware v2.33. After the backup, the receiver was reset into its existing firmware; serial status and display capture succeeded at the original frequency and volume. Restoration, audio, physical controls and wireless operation have not been tested. Recovery-button access and display controller identity remain unverified. See the device inventory for evidence and limitations.
