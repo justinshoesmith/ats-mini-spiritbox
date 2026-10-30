@@ -95,6 +95,12 @@ The owner explicitly reported that the last (100 ms reverse) sweep sounded bette
 
 ## Acceptance before installing a native build
 
+### Additional FM listening trial
+
+At the owner's request, repeated FM sweeping around the current 106.50 MHz tuning on 30 October 2026 around 17:34 Brisbane time. Used 106.20–106.80 MHz, 100 kHz steps, eight seconds at 200 ms forward followed by eight seconds at 100 ms reverse. Both completed with telemetry-confirmed restoration of 106.50 MHz. No audio properties, volume or firmware were changed. The owner instructed proceeding but did not confirm that the centre frequency carried clear speech, so this is not a confirmed speech-station trial. Listening result is pending. Session evidence is under `.local/logs/fm-centred-trial/`, with sweep logs `20261030T073405174364Z.json` and `20261030T073418737183Z.json`.
+
+### Remaining checks
+
 1. Retain the user's AM soft-mute setting initially; repeat a clearly observed comparison only if audio optimization needs it. FM is audible throughout at the tested intervals; MW continuity has not yet met that standard. Finish ordinary AM/SSB baseline checks separately.
 2. Implement the small native module and integration points above; review the persistence paths before compiling. A future compile requires an explicit build request under root `AGENTS.md`.
 3. Check boundaries/wrap, both directions, interval changes, Stop/Start, field timeout, exit, sleep/off-timer, remote/web conflicts, pending saves and power-cycle restoration. Verify global theme/VFO/preferences remain unchanged, including unrelated saves during the mode.
