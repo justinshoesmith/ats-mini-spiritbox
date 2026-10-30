@@ -1,0 +1,1 @@
+Add an offline Spirit Box menu mode with FM/MW frequency sweeping, adjustable interval, direction, step and volume, a temporary purple ghost theme, and restoration of normal radio tuning and saved preferences on exit.

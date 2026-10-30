@@ -10,6 +10,7 @@
 #include "Memories.h"
 #include "Patches.h"
 #include "Storage.h"
+#include "SpiritBox.h"
 
 #include <time.h>
 
@@ -94,6 +95,7 @@ Band *getCurrentBand() { return(&bands[bandIdx]); }
 #define MENU_AVC         11
 #define MENU_SOFTMUTE    12
 #define MENU_SETTINGS    13
+#define MENU_SPIRITBOX   14
 
 int8_t menuIdx = MENU_VOLUME;
 
@@ -113,6 +115,7 @@ static const char *menu[] =
   "AVC",
   "SoftMute",
   "Settings",
+  "Spirit Box",
 };
 
 //
@@ -971,6 +974,7 @@ bool vfoInitialized = false;
 
 VfoState captureVfo()
 {
+  if(spiritBoxActive()) return spiritBoxNormalVfo();
   const Band *band = getCurrentBand();
   return {
     currentFrequency,
@@ -1184,6 +1188,7 @@ static void clickMenu(int cmd, bool shortPress)
     case MENU_AGC_ATT:  currentCmd = CMD_AGC;       break;
     case MENU_BAND:     currentCmd = CMD_BAND;      break;
     case MENU_SETTINGS: currentCmd = CMD_SETTINGS;  break;
+    case MENU_SPIRITBOX: spiritBoxEnter();          break;
     case MENU_SQUELCH:  currentCmd = CMD_SQUELCH;   break;
     case MENU_VOLUME:   currentCmd = CMD_VOLUME;    break;
     case MENU_VFO:      clickVfo(shortPress);       break;

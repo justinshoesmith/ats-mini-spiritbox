@@ -1,6 +1,16 @@
 # Spirit Box integration investigation
 
-30 October 2026. Source inspected: upstream v2.45, with PU2CLR SI4735 tag 2.1.8. **Native mode is designed, not implemented.** The installed radio remains official v2.45 OSPI. No compile or custom flash was performed. Owner confirmed completion of the UTC+10 correction.
+30 October 2026. Source inspected: upstream v2.45, with PU2CLR SI4735 tag 2.1.8. **Native-mode source is implemented, not compiled or installed.** The installed radio remains official v2.45 OSPI. No compile or custom flash was performed. Owner confirmed completion of the UTC+10 correction. The design and experiment record below explain the implementation choices; see `operating.md` for controls and outstanding validation.
+
+## Source implementation status
+
+Added `SpiritBox.cpp/.h`, a main-menu command, shared-input routing and an effective display-theme accessor. No profile or dependency changes. Normal band records and the current VFO are captured before switching receiver context. The save layer uses captured normal records/index and `captureVfo()` returns the captured normal VFO while active; the sweep never requests a save for each step. Unrelated globals such as ordinary volume retain existing persistence. Only the original band and the two target band records need snapshots; normal VFO slots remain in use by the existing saver without receiving temporary sweep values.
+
+Exit restores affected band records and reselects the original receiver context, reapplies a prior temporary SSB AVC Hold, restores squelch behavior and retains explicit user mute. Sleep/shutdown, ordinary remote mutations, web configuration, queued patch selection and OTA processing leave the mode through the same exit function. Read-only remote operations and shared input gestures remain active. Web memory edits remain independent and do not retune the receiver. No additional remote protocol was introduced.
+
+The purple palette is a private copy with display-only overrides; `themeIdx`, user palettes, layout preference and splash remain unchanged. A small ghost uses existing primitives. About identifies a future custom build as `SB-dev`; protocol version and upstream compatibility constants remain unchanged.
+
+Validation performed: source/call-path review, upstream prek checks and Git whitespace checks. No C++ compilation, new unit tests, rendering run or native hardware tests were performed, following root `AGENTS.md`. A compile-only request is the next step; do not infer compiler or runtime correctness from repository hygiene checks.
 
 ## Recommendation
 

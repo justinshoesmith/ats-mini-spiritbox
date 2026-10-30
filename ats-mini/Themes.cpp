@@ -1,6 +1,7 @@
 #include "Common.h"
 #include "Themes.h"
 #include "Draw.h"
+#include "SpiritBox.h"
 
 ColorTheme theme[] =
 {
@@ -534,6 +535,7 @@ ColorTheme theme[] =
 };
 
 uint8_t themeIdx = 0;
+ColorTheme &displayTheme() { return spiritBoxActive()? spiritBoxTheme() : theme[themeIdx]; }
 int getTotalThemes() { return(ITEM_COUNT(theme)); }
 
 //

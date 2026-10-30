@@ -19,6 +19,7 @@
 #include "PageWiFi.h"
 #include "PageUpdate.h"
 #include "PagePatches.h"
+#include "SpiritBox.h"
 
 #include <new>
 #include <mutex>
@@ -157,6 +158,7 @@ bool webTick()
   std::unique_lock<std::mutex> lock(configSettings.mutex);
   if(configSettings.pending)
   {
+    spiritBoxExit();
     utcOffsetIdx = configSettings.utcOffset;
     if(rdsModeIdx != configSettings.rds)
       doRDSMode(configSettings.rds - rdsModeIdx);
@@ -197,6 +199,7 @@ bool webTick()
   int wifiMode = pendingWiFiMode.exchange(-1);
   if(wifiMode >= 0)
   {
+    spiritBoxExit();
     wifiModeIdx = wifiMode;
     prefsRequestSave(SAVE_SETTINGS, true);
     netInit(wifiModeIdx);

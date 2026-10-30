@@ -50,4 +50,4 @@ Bootstrap verification: all upstream prek checks passed; backup script PowerShel
 | Remote and wireless | `Remote.cpp`, `Parser*.cpp`, `Network.cpp`, `TcpMode.cpp`, `Web.cpp`, `Ble*.cpp` |
 | Firmware update | `Ota.cpp`, `Ota.h` |
 
-Phase 3 source findings, commercial manual references and two completed FM USB sweep trials are recorded in `integration.md`. Native firmware implementation, MW audio trials and receiver/audio settling measurements remain pending. Preserve these upstream facilities and offline operation.
+Phase 3 source findings, commercial manual references and FM/MW USB sweep trials are recorded in `integration.md`. The native module is now implemented in source with no dependency/profile changes. Compilation, native hardware validation and receiver/audio settling measurements remain pending. See `operating.md` for controls and acceptance checks. Preserve upstream facilities and offline operation.

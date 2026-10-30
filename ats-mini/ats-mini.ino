@@ -19,6 +19,7 @@
 #include "TcpMode.h"
 #include "Splash.h"
 #include "Web.h"
+#include "SpiritBox.h"
 #include <stdlib.h>
 #include <time.h>
 
@@ -640,7 +641,7 @@ bool processRssiSnr()
   int newSNR = rx.getCurrentSNR();
 
   // Apply squelch if the volume is not muted
-  uint8_t squelchValue = currentSquelch[currentMode] & 0x7f;
+  uint8_t squelchValue = spiritBoxActive()? 0 : currentSquelch[currentMode] & 0x7f;
   uint8_t squelchParam = (currentSquelch[currentMode] & 0x80)? newSNR:newRSSI;
   if(squelchValue)
   {
@@ -681,6 +682,11 @@ bool processRssiSnr()
 bool handleRotation(int16_t enc, int16_t accelerated, bool pressed)
 {
   if(!enc || (sleepOn() && sleepModeIdx == SLEEP_LOCKED)) return false;
+  if(spiritBoxActive())
+  {
+    elapsedSleep = elapsedCommand = millis();
+    return spiritBoxRotate(enc);
+  }
   bool changed = false;
   if(pressed)
   {
@@ -730,6 +736,7 @@ bool handleRotation(int16_t enc, int16_t accelerated, bool pressed)
 bool handleClick(bool shortPress)
 {
   elapsedSleep = elapsedCommand = millis();
+  if(spiritBoxActive()) return spiritBoxClick(shortPress);
   if(sleepOn())
   {
     if(currentSleep)
@@ -799,7 +806,8 @@ void loop()
   // Disable commands control
   if((currentTime - elapsedCommand) > ELAPSED_COMMAND)
   {
-    if(currentCmd != CMD_NONE && currentCmd != CMD_SEEK && currentCmd != CMD_SCAN && currentCmd != CMD_MEMORY)
+    if(spiritBoxActive()) spiritBoxTimeout();
+    else if(currentCmd != CMD_NONE && currentCmd != CMD_SEEK && currentCmd != CMD_SCAN && currentCmd != CMD_MEMORY)
     {
       currentCmd = CMD_NONE;
       needRedraw = true;
@@ -825,14 +833,14 @@ void loop()
   // Periodically check received RDS information
   if((currentTime - lastRDSCheck) > RDS_CHECK_TIME)
   {
-    needRedraw |= (currentMode == FM) && checkRds();
+    needRedraw |= !spiritBoxActive() && (currentMode == FM) && checkRds();
     lastRDSCheck = currentTime;
   }
 
   // Periodically check schedule
   if((currentTime - lastScheduleCheck) > SCHEDULE_CHECK_TIME)
   {
-    needRedraw |= identifyFrequency(currentFrequency, true);
+    if(!spiritBoxActive()) needRedraw |= identifyFrequency(currentFrequency, true);
     lastScheduleCheck = currentTime;
   }
 
@@ -843,6 +851,7 @@ void loop()
   // Apply queued web operations, then advance WiFi and time synchronization.
   needRedraw |= webTick();
   needRedraw |= netTickTime();
+  needRedraw |= spiritBoxTick();
 
   // Update clock display
   needRedraw |= clockUpdate();

@@ -5,6 +5,7 @@
 #include "Utils.h"
 #include "Draw.h"
 #include "patch_init.h"
+#include "SpiritBox.h"
 
 #include <LittleFS.h>
 #include <esp_heap_caps.h>
@@ -225,6 +226,7 @@ bool patchesTick()
     selection = pendingSelection;
   }
   if(selection < 0) return false;
+  spiritBoxExit();
   patchApplySelection(selection);
   {
     PatchLock lock;

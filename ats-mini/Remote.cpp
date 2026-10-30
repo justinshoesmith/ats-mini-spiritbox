@@ -7,6 +7,7 @@
 #include "Storage.h"
 #include "Remote.h"
 #include "ParserAdhoc.h"
+#include "SpiritBox.h"
 
 static RemoteState remoteSerialState;
 static bool serialDisconnectPending = false;
@@ -267,6 +268,16 @@ static void remotePrintStatus(Stream* stream, RemoteState* state)
 static bool remoteExecuteCommand(Stream* stream, RemoteState* state, const AdhocCommand& command)
 {
   using Id = AdhocCommand::Id;
+  // Shared input gestures and observation work within the mode. Other radio
+  // commands operate on the restored normal state, never a moving sweep.
+  switch(command.id)
+  {
+    case Id::RotateCw: case Id::RotateCcw: case Id::Click: case Id::ShortPress:
+    case Id::CaptureScreen: case Id::CaptureScreenBinary: case Id::ToggleLog:
+    case Id::GetMemories:
+      break;
+    default: spiritBoxExit(); break;
+  }
   switch(command.id)
   {
     case Id::RotateCw:   return handleRotation(1, 1);

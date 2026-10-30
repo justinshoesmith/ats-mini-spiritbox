@@ -1,4 +1,5 @@
 #include "Common.h"
+#include "SpiritBox.h"
 #include "Draw.h"
 #include "Menu.h"
 #include "Ota.h"
@@ -335,6 +336,7 @@ void otaTick()
   if(phase == OTA_CHECK_QUEUED || phase == OTA_QUEUED || phase == OTA_WRITING ||
      phase == OTA_COMPLETE || phase == OTA_REBOOT_PENDING)
   {
+    spiritBoxExit();
     currentCmd = CMD_NONE;
     if(phase == OTA_CHECK_QUEUED || phase == OTA_QUEUED)
     {

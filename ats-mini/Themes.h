@@ -2,7 +2,7 @@
 #define THEMES_H
 
 // This is our current theme
-#define TH (theme[themeIdx])
+#define TH (displayTheme())
 
 typedef struct __attribute__ ((packed))
 {
@@ -70,6 +70,7 @@ extern uint8_t themeIdx;
 int getTotalThemes();
 
 extern ColorTheme theme[];
+ColorTheme &displayTheme();
 bool switchThemeEditor(int8_t state = 2);
 
 #endif // THEMES_H

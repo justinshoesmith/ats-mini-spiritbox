@@ -9,6 +9,7 @@
 #include "Utils.h"
 #include "Menu.h"
 #include "Draw.h"
+#include "SpiritBox.h"
 
 #include <sys/time.h>
 #include <time.h>
@@ -48,6 +49,7 @@ static void holdOutputLow(int pin)
 
 void receiverShutdown()
 {
+  spiritBoxExit();
   muteOn(MUTE_FORCE, true, true);
   netStop();
   bleStop();
@@ -118,13 +120,14 @@ bool statusTick(uint32_t now)
 //
 const char *getVersion(bool shorter)
 {
-  static char versionString[35] = "\0";
+  static char versionString[48] = "\0";
 
-  sprintf(versionString, "%s%sF/W: v%1.1d.%2.2d %s",
+  snprintf(versionString, sizeof(versionString), "%s%sF/W: v%1.1d.%2.2d%s %s",
     shorter ? "" : RECEIVER_NAME,
     shorter ? "" : " ",
     VER_APP / 100,
     VER_APP % 100,
+    shorter ? "" : " SB-dev",
     __DATE__
   );
 
@@ -265,6 +268,7 @@ bool muteOn(uint8_t mode, int x, bool muteAmp)
 //
 bool sleepOn(int x)
 {
+  if(x==1) spiritBoxExit();
   if((x==1) && !sleep_on)
   {
     sleep_on = true;

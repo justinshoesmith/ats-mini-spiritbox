@@ -5,6 +5,7 @@
 #include "Menu.h"
 #include "BleMode.h"
 #include "Draw.h"
+#include "SpiritBox.h"
 
 //
 // Draw preferences write indicator
@@ -441,6 +442,11 @@ void drawScanGraphs(uint32_t freq)
 void drawScreen()
 {
   if(sleepOn()) return;
+  if(spiritBoxActive())
+  {
+    spiritBoxDraw();
+    return;
+  }
 
   // Clear screen buffer
   spr.fillSprite(TH.bg);

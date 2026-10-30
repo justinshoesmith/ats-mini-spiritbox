@@ -4,6 +4,7 @@
 #include "Utils.h"
 #include "Menu.h"
 #include "Memories.h"
+#include "SpiritBox.h"
 #include <LittleFS.h>
 #include "nvs_flash.h"
 
@@ -80,12 +81,13 @@ void prefsSaveBand(uint8_t idx, bool openPrefs)
 
   // Compose preference name and value
   sprintf(name, "Band-%d", idx);
-  value.currentFreq    = bands[idx].currentFreq;     // Frequency
-  value.bandMode       = bands[idx].bandMode;        // Modulation
-  value.currentStepIdx = bands[idx].currentStepIdx;  // Step
-  value.bandwidthIdx   = bands[idx].bandwidthIdx;    // Bandwidth
-  value.usbCal         = bands[idx].usbCal;          // USB Calibration
-  value.lsbCal         = bands[idx].lsbCal;          // LSB Calibration
+  const Band &band = spiritBoxStoredBand(idx);
+  value.currentFreq    = band.currentFreq;     // Frequency
+  value.bandMode       = band.bandMode;        // Modulation
+  value.currentStepIdx = band.currentStepIdx;  // Step
+  value.bandwidthIdx   = band.bandwidthIdx;    // Bandwidth
+  value.usbCal         = band.usbCal;          // USB Calibration
+  value.lsbCal         = band.lsbCal;          // LSB Calibration
 
   // Write a preference
   prefs.putBytes(name, &value, sizeof(value));
@@ -191,7 +193,7 @@ void prefsSave(uint32_t items)
     prefs.putUChar("Version",  VER_SETTINGS);      // Settings version
     prefs.putUShort("App",     VER_APP);           // Application version
     prefs.putUChar("Volume",   volume);            // Current volume
-    prefs.putUChar("Band",     bandIdx);           // Current band
+    prefs.putUChar("Band",     spiritBoxStoredBandIndex()); // Normal radio band
     prefs.putUChar("WiFiMode", wifiModeIdx);       // WiFi connection mode
 
     // Save additional global settings
@@ -238,7 +240,7 @@ void prefsSave(uint32_t items)
       for(int i=0 ; i<getTotalBands() ; i++) prefsSaveBand(i, false);
     }
     else
-      prefsSaveBand(bandIdx, false);
+      prefsSaveBand(spiritBoxStoredBandIndex(), false);
 
     // Startup may save defaults before the receiver is ready to capture.
     if(vfoInitialized) vfos[vfoIdx] = captureVfo();
