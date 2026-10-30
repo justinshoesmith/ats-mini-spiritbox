@@ -16,3 +16,15 @@ __pycache__/
 
 # Project
 build/
+
+# Spirit Box: device data, local tools and generated firmware
+/.local/
+/.venv/
+/.env
+/.env.*
+*.bin
+*.elf
+*.map
+*.hex
+*.uf2
+/docs/build/
