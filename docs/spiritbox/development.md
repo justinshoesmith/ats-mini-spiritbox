@@ -16,7 +16,7 @@ uv venv .local/esptool --python 3.12
 uv pip install --python .local/esptool/Scripts/python.exe esptool==5.6.0
 ```
 
-Arduino CLI was downloaded from its [official release](https://github.com/arduino/arduino-cli/releases/tag/v1.5.1). ESP32 platform and firmware libraries are not yet downloaded: upstream profiles install their pinned versions on first compile. Device identification supports `esp32s3-ospi`; see the inventory for chip evidence. No build has been performed.
+Arduino CLI was downloaded from its [official release](https://github.com/arduino/arduino-cli/releases/tag/v1.5.1). The first authorized compile installed the ESP32 platform and firmware libraries at the pinned upstream versions. Device identification supports `esp32s3-ospi`; see the inventory for chip evidence. Native OSPI build succeeded; see `build.md`.
 
 `ats-mini/sketch.yaml` pins ESP32 core 3.3.12, PU2CLR SI4735 2.1.8, LovyanGFX 1.2.33, Async TCP 3.5.0 and ESP Async WebServer 3.12.1. Both ESP32-S3 profiles specify 8M flash, 80 MHz CPU, QIO flash and custom partitions; these are upstream build defaults, not measurements of this receiver. OSPI uses `PSRAM=opi`; QSPI uses `PSRAM=enabled`. The default profile is OSPI, so explicitly supply the confirmed profile when a future build is requested. Keep `sketch.yaml` and upstream workflow settings consistent.
 
@@ -50,4 +50,4 @@ Bootstrap verification: all upstream prek checks passed; backup script PowerShel
 | Remote and wireless | `Remote.cpp`, `Parser*.cpp`, `Network.cpp`, `TcpMode.cpp`, `Web.cpp`, `Ble*.cpp` |
 | Firmware update | `Ota.cpp`, `Ota.h` |
 
-Phase 3 source findings, commercial manual references and FM/MW USB sweep trials are recorded in `integration.md`. The native module is now implemented in source with no dependency/profile changes. Compilation, native hardware validation and receiver/audio settling measurements remain pending. See `operating.md` for controls and acceptance checks. Preserve upstream facilities and offline operation.
+Phase 3 source findings, commercial manual references and FM/MW USB sweep trials are recorded in `integration.md`. The native module is implemented with no dependency/profile changes, and the authorized compile-only OSPI build passed. The pinned platform and libraries are now installed by Arduino CLI. Native hardware validation and receiver/audio settling measurements remain pending. See `build.md` for build evidence and `operating.md` for controls and acceptance checks. Preserve upstream facilities and offline operation.

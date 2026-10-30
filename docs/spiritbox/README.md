@@ -9,6 +9,7 @@
 - [Upstream upgrade and verified v2.45 baseline](upgrade.md)
 - [Native-mode investigation and completed USB sweep trials](integration.md)
 - [Native-mode controls and outstanding validation](operating.md)
+- [Successful OSPI build and candidate artifacts](build.md)
 
 Repository: <https://github.com/justinshoesmith/ats-mini-spiritbox> (fork of <https://github.com/esp32-si4732/ats-mini>).
 
@@ -16,4 +17,4 @@ Repository: <https://github.com/justinshoesmith/ats-mini-spiritbox> (fork of <ht
 
 Upstream source layout, MIT license and attribution are retained. Project additions live in `docs/spiritbox/` and `tools/spiritbox/`. Dumps, diagnostics, local tools and environments are excluded from Git. Never force-add device data.
 
-The receiver is an ESP32-S3 revision v0.2 with 16 MiB flash and 8 MiB PSRAM. USB status and About confirm v2.45, non-zero PSRAM and a working display. The owner confirms normal FM audio/controls and completion of the UTC+10 correction. A full-band USB FM pass across 87.5–108 MHz produced owner-confirmed clear station fragments and restored the starting tuning; MW trials had gaps, with improvement reported on a later soft-mute-zero pass. Native-mode source is now implemented but has not been compiled or installed. Repository checks pass; compiler, display, persistence and hardware acceptance checks remain outstanding. Backup restoration, ordinary AM/SSB and wireless operation remain untested; manual recovery-button access is unverified. See the device inventory and integration record for evidence and limitations.
+The receiver is an ESP32-S3 revision v0.2 with 16 MiB flash and 8 MiB PSRAM. USB status and About confirm v2.45, non-zero PSRAM and a working display. The owner confirms normal FM audio/controls and completion of the UTC+10 correction. A full-band USB FM pass across 87.5–108 MHz produced owner-confirmed clear station fragments and restored the starting tuning; MW trials had gaps, with improvement reported on a later soft-mute-zero pass. Native-mode source is implemented and the OSPI compile passed; candidate is not installed. Repository checks pass; display, persistence and hardware acceptance checks remain outstanding. Backup restoration, ordinary AM/SSB and wireless operation remain untested; manual recovery-button access is unverified. See the device inventory, integration record and build record for evidence and limitations.

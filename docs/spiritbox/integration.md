@@ -1,6 +1,6 @@
 # Spirit Box integration investigation
 
-30 October 2026. Source inspected: upstream v2.45, with PU2CLR SI4735 tag 2.1.8. **Native-mode source is implemented, not compiled or installed.** The installed radio remains official v2.45 OSPI. No compile or custom flash was performed. Owner confirmed completion of the UTC+10 correction. The design and experiment record below explain the implementation choices; see `operating.md` for controls and outstanding validation.
+30 October 2026. Source inspected: upstream v2.45, with PU2CLR SI4735 tag 2.1.8. **Native-mode source is implemented and the OSPI compile passed; candidate not installed.** The installed radio remains official v2.45 OSPI. Owner authorized the compile and confirmed completion of the earlier UTC+10 correction. The design and experiment record below explain the implementation choices; see `operating.md` for controls and `build.md` for build evidence.
 
 ## Source implementation status
 
@@ -10,7 +10,7 @@ Exit restores affected band records and reselects the original receiver context,
 
 The purple palette is a private copy with display-only overrides; `themeIdx`, user palettes, layout preference and splash remain unchanged. A small ghost uses existing primitives. About identifies a future custom build as `SB-dev`; protocol version and upstream compatibility constants remain unchanged.
 
-Validation performed: source/call-path review, upstream prek checks and Git whitespace checks. No C++ compilation, new unit tests, rendering run or native hardware tests were performed, following root `AGENTS.md`. A compile-only request is the next step; do not infer compiler or runtime correctness from repository hygiene checks.
+Validation performed: source/call-path review, upstream prek checks, Git whitespace checks and the subsequently authorized OSPI compile. Compile succeeded, application fits both 3 MiB slots and image hashes validate; see `build.md` for dependency warnings. No new unit tests, rendering run, custom flash or native hardware tests were performed. Do not infer runtime correctness from successful compilation.
 
 ## Recommendation
 

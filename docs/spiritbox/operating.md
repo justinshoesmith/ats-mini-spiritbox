@@ -1,6 +1,6 @@
 # Native Spirit Box mode
 
-**Source implementation only: not compiled, installed or hardware-tested.** The radio still runs official upstream v2.45. This document describes the intended controls of the new source changes.
+**OSPI compile succeeded; candidate not installed or hardware-tested.** The radio still runs official upstream v2.45. This document describes the intended controls of the new source changes. See `build.md` for the source commit, sizes, warnings and candidate artifacts.
 
 A future custom build shows `SB-dev` in its About version string. The normal serial protocol retains the upstream numeric version for compatibility.
 
@@ -28,4 +28,4 @@ Sweep intervals, step selections, direction, Run state and temporary tuning are 
 
 ## Validation still required
 
-No native firmware build or hardware test has been run. First request a compile-only OSPI build; resolve any compiler findings before considering installation. A custom physical flash requires explicit approval after the build is ready. Verify entry/exit from each normal modulation, both layouts, bounds/wrap, both directions, all controls, mute/squelch, sleep/off-timer, deferred/direct saves, reboot recovery, web/remote interactions and actual FM/MW audio. The earlier USB trials establish useful FM audio on upstream firmware, not correctness of this new native mode.
+The compile-only OSPI build passed with two warnings in unchanged PU2CLR library code. No native hardware test has been run. A custom physical flash requires explicit approval of the prepared build. Verify entry/exit from each normal modulation, both layouts, bounds/wrap, both directions, all controls, mute/squelch, sleep/off-timer, deferred/direct saves, reboot recovery, web/remote interactions and actual FM/MW audio. The earlier USB trials establish useful FM audio on upstream firmware, not correctness of this new native mode.
