@@ -32,7 +32,9 @@ A further SHA-256-verified, Explorer-accessible copy was placed in `Documents/AT
 
 ## Upgraded baseline
 
-The approved four-image USB update to v2.45 completed with successful esptool hash verification for each image. Live USB monitor and About/System screen confirm v2.45 and working 8 MiB PSRAM. The owner explicitly confirmed normal FM audio and controls. UTC-offset migration needs the manual correction to UTC+10 requested from the owner; AM/SSB and wireless operation remain untested. See the upgrade record for detailed results. Original backup evidence below describes the pre-upgrade baseline.
+The approved four-image USB update to v2.45 completed with successful esptool hash verification for each image. Live USB monitor and About/System screen confirm v2.45 and working 8 MiB PSRAM. The owner explicitly confirmed normal FM audio and controls, then completion of the UTC+10 correction. AM/SSB and wireless operation remain untested. See the upgrade record for detailed results. Original backup evidence below describes the pre-upgrade baseline.
+
+Subsequent five-second USB sweep trials at requested 200 ms forward and 100 ms reverse intervals completed, with audio audible throughout according to the owner. Both restored the then-current 106.50 MHz FM tuning and verified restoration using telemetry. No native Spirit Box firmware installed; see `integration.md`.
 
 Offline partition inspection finds the existing application slots, settings, LittleFS, NVS and coredump within the first 8 MiB. The dump deliberately covers the full physical 16 MiB. The application descriptor contains Arduino core build metadata rather than the radio's displayed version; v2.33 was independently confirmed by the live USB monitor.
 

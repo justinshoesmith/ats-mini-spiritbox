@@ -7,6 +7,7 @@
 - [Development environment and source map](development.md)
 - [Scope and decisions](decisions.md)
 - [Upstream upgrade and verified v2.45 baseline](upgrade.md)
+- [Native-mode investigation and completed USB sweep trials](integration.md)
 
 Repository: <https://github.com/justinshoesmith/ats-mini-spiritbox> (fork of <https://github.com/esp32-si4732/ats-mini>).
 
@@ -14,4 +15,4 @@ Repository: <https://github.com/justinshoesmith/ats-mini-spiritbox> (fork of <ht
 
 Upstream source layout, MIT license and attribution are retained. Project additions live in `docs/spiritbox/` and `tools/spiritbox/`. Dumps, diagnostics, local tools and environments are excluded from Git. Never force-add device data.
 
-The connected receiver is an ESP32-S3 revision v0.2 with 16 MiB flash and 8 MiB PSRAM. USB status and About confirm v2.45, non-zero PSRAM and a working display. The owner confirms normal FM audio and physical controls. UTC offset needs correction to UTC+10 after migration. Restoration, AM/SSB and wireless operation remain untested; manual recovery-button access is unverified. See the device inventory for evidence and limitations.
+The receiver is an ESP32-S3 revision v0.2 with 16 MiB flash and 8 MiB PSRAM. USB status and About confirm v2.45, non-zero PSRAM and a working display. The owner confirms normal FM audio/controls and completion of the UTC+10 correction. Two bounded USB FM sweep trials were audible throughout and restored the starting tuning. Native-mode implementation is pending. Restoration, AM/SSB and wireless operation remain untested; manual recovery-button access is unverified. See the device inventory and integration record for evidence and limitations.

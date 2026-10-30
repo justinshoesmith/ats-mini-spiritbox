@@ -18,5 +18,12 @@ Study P-SB7/SB7, SB7 Pro and comparable AM/FM sweep receivers in Phase 3 for use
 ## Gates
 
 - Phase 1 preservation complete: USB identification, current display/settings evidence, full 16 MiB original dump, measured size and SHA-256, private verified recovery copy outside the repository, OSPI profile supported by chip evidence. Restoration is documented but untested. Recovery-button access and display controller identity remain to be checked before a future physical update. Both backup copies currently share the same computer/disk.
-- Phase 2: approved v2.45 OSPI update completed and all four written image hashes verified. USB status, About/System, PSRAM and display checked; owner confirms normal FM audio and controls. Requested manual UTC+10 correction after the index migration. AM/SSB and wireless checks remain outstanding. Manual recovery buttons could not be located; proceeded via verified hardware USB download access, with limitations recorded in `upgrade.md`.
-- Phase 3 only later: inspect integration details, prototype/measure, implement the smallest native mode and test theme restoration and ordinary reception.
+- Phase 2: approved v2.45 OSPI update completed and all four written image hashes verified. USB status, About/System, PSRAM and display checked; owner confirms normal FM audio and controls and completion of the UTC+10 correction. AM/SSB and wireless checks remain outstanding. Manual recovery buttons could not be located; proceeded via verified hardware USB download access, with limitations recorded in `upgrade.md`.
+- Phase 3 investigation completed: source architecture and commercial manuals reviewed; two bounded FM USB sweep trials audible throughout with verified tuning restoration. Native design and acceptance gates are recorded in `integration.md`. MW trial and native implementation remain pending; no firmware changes compiled or installed.
+
+## Investigation decisions
+
+5. Reuse normal tuning in a main-loop sweep timer rather than the muted, blocking signal scan. Start at 200 ms, offer 100–350 ms pending further audio/tune-complete measurements. Keep a single-band offline mode.
+6. Select a temporary effective display theme without changing persistent `themeIdx` or user palette data. A small embedded static ghost suffices.
+7. Explicitly preserve normal band/VFO/global state through deferred and direct save paths; avoiding new save requests alone does not prevent temporary sweep state from persisting.
+8. USB protocol experiments remain bounded and restore starting tuning. They measure host cadence and sampled receiver status, not RF/audio settling time. Physical custom firmware flashing requires its own explicit approval after a concrete build is ready.

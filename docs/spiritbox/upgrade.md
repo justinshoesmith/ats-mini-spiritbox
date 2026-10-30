@@ -34,6 +34,6 @@ Immediately before writing, reverified both original dump copies, the release ar
 - About/System screen displays ATS-Mini F/W v2.45, Oct 22 2026, ESP32-S3 r2 at 80 MHz, 16M flash, PSRAM 8192k (8078k free), and display ID 8183.
 - Main screen renders correctly with the prior default theme and volume 20. Per-band tuning reset as expected; restored 91.40 MHz using the native frequency command before the owner's reception test.
 - Owner explicitly confirmed: audio and controls work normally on FM. AM/SSB reception and Wi-Fi/Bluetooth have not been tested. The firmware is the official upstream release; no Spirit Box feature is installed yet.
-- Original saved squelch was zero and FM region was EU/JP/AU. The original UTC offset index was 19, meaning UTC+10 in v2.33; in v2.45 index 19 means UTC+3:30, while UTC+10 is index 32. Asked the owner to set Settings -> UTC Offset -> UTC+10. Completion of that manual correction has not yet been confirmed.
+- Original saved squelch was zero and FM region was EU/JP/AU. The original UTC offset index was 19, meaning UTC+10 in v2.33; in v2.45 index 19 means UTC+3:30, while UTC+10 is index 32. Owner confirmed completion of the requested Settings -> UTC Offset -> UTC+10 correction.
 
 Full logs, image manifests, monitor output and screenshots remain under `.local/logs/upgrade-v2.45/`. The original full-flash backup has not been overwritten or restored. A downgrade would require reviewing compatibility or restoring that original dump; do not write only the old application over migrated settings.
