@@ -29,7 +29,7 @@ Future **compile-only** examples, after hardware identification and when asked:
 
 Run repository checks with `uv run --frozen prek run --all-files`. The installed uv requests a lock refresh with `--locked`; `--frozen` consumes upstream's existing lock without modifying it.
 
-Bootstrap verification: all upstream prek checks passed; backup script PowerShell parsing and rejection of non-USB COM1 passed; esptool read/restore command options were checked against the installed CLI. The actual full-flash capture/copy workflow subsequently succeeded on COM3 with a 16 MiB read and matching local/recovery SHA-256. Post-backup serial status and display capture succeeded. Firmware builds, restoration, audio and physical-control tests were not run. Local `core.autocrlf=false` keeps the checkout consistent with upstream's LF policy; no source formatting changes are committed.
+Bootstrap verification: all upstream prek checks passed; backup script PowerShell parsing and rejection of non-USB COM1 passed; esptool read/restore command options were checked against the installed CLI. Full-flash capture/copy succeeded on COM3 with a 16 MiB read and matching local/recovery SHA-256. Subsequently installed the official v2.45 OSPI release with approval; esptool verified all four writes. USB status, display and runtime PSRAM checked, and owner confirms normal FM audio/controls. Firmware builds, restoration, AM/SSB and wireless tests were not run. Local `core.autocrlf=false` keeps the checkout consistent with upstream's LF policy; no source formatting changes are committed.
 
 ## Git workflow
 

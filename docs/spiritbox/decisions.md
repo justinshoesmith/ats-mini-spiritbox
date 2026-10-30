@@ -18,5 +18,5 @@ Study P-SB7/SB7, SB7 Pro and comparable AM/FM sweep receivers in Phase 3 for use
 ## Gates
 
 - Phase 1 preservation complete: USB identification, current display/settings evidence, full 16 MiB original dump, measured size and SHA-256, private verified recovery copy outside the repository, OSPI profile supported by chip evidence. Restoration is documented but untested. Recovery-button access and display controller identity remain to be checked before a future physical update. Both backup copies currently share the same computer/disk.
-- Phase 2: latest stable and OSPI images verified, migration review complete and physical-update approval received. Pending recovery-button access confirmation, physical update and normal-radio verification; see `upgrade.md`.
+- Phase 2: approved v2.45 OSPI update completed and all four written image hashes verified. USB status, About/System, PSRAM and display checked; owner confirms normal FM audio and controls. Requested manual UTC+10 correction after the index migration. AM/SSB and wireless checks remain outstanding. Manual recovery buttons could not be located; proceeded via verified hardware USB download access, with limitations recorded in `upgrade.md`.
 - Phase 3 only later: inspect integration details, prototype/measure, implement the smallest native mode and test theme restoration and ordinary reception.
