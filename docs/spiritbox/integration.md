@@ -81,11 +81,17 @@ The surrounding session returned to the original VHF/FM band and 106.50 MHz, con
 
 Repeated the same range and directions for eight seconds each around 16:17 Brisbane time while the owner listened. The forward trial sent 40 commands, with host intervals 203/203/204 ms; reverse sent 74 commands, at 109/109/110 ms. Each restored 783 kHz, and the surrounding session restored and verified VHF/FM 106.50 MHz with volume 20. Owner reported **audible, with silent gaps**. The report does not distinguish which interval had more gaps or establish their cause. The repeat session result is `.local/logs/mw-trial/repeat-result.json`.
 
-Next audio experiment: compare the same MW range/interval with AM soft-mute attenuation temporarily set to zero, confirm squelch is off, then restore both prior settings and starting tuning. Do not assume the gaps are caused by soft-mute: receiver tune settling and reception conditions remain possible contributors. No audio-property override was performed in these trials.
+### Controlled MW soft-mute comparison
+
+Completed the approved comparison around 16:21 Brisbane time on 30 October 2026. Menu screenshots confirmed AM soft-mute maximum attenuation **4 dB** and MW squelch **Off (rssi)** before the change. Changed only AM soft-mute to **0 dB**, verified by a second screenshot; squelch remained Off. Repeated the same 702–810 kHz range and 9 kHz steps for eight seconds forward at requested 200 ms, then eight seconds reverse at requested 100 ms.
+
+Forward sent 40 commands at host intervals 203/203/204 ms min/median/max; reverse sent 74 at 109/109/110 ms. Each restored saved MW tuning, 783 kHz. Afterward screenshots verified soft-mute restored to **4 dB** and squelch still **Off (rssi)**. Fresh telemetry then confirmed original VHF/FM **106.50 MHz**, volume **20**. No firmware write was performed. Private evidence is under `.local/logs/mw-softmute/`; trial logs are `20261030T062125442795Z.json` and `20261030T062137000088Z.json` under `.local/logs/usb-sweep/`.
+
+The owner's comparison listening result is pending. Do not conclude that soft-mute caused or fixed the gaps from command/telemetry results: receiver tune settling and reception conditions remain possible contributors. The earlier 4 dB trial was audible with gaps; no audio recording or instrumented latency measurement was taken.
 
 ## Acceptance before installing a native build
 
-1. Investigate MW silent gaps with a controlled soft-mute/squelch comparison, preserving settings and tuning. FM is audible throughout at the tested intervals; MW continuity has not yet met that standard. Finish ordinary AM/SSB baseline checks separately.
+1. Obtain the listening result for the completed controlled soft-mute comparison before deciding the native AM audio policy. FM is audible throughout at the tested intervals; MW continuity has not yet met that standard. Finish ordinary AM/SSB baseline checks separately.
 2. Implement the small native module and integration points above; review the persistence paths before compiling. A future compile requires an explicit build request under root `AGENTS.md`.
 3. Check boundaries/wrap, both directions, interval changes, Stop/Start, field timeout, exit, sleep/off-timer, remote/web conflicts, pending saves and power-cycle restoration. Verify global theme/VFO/preferences remain unchanged, including unrelated saves during the mode.
 4. With a concrete verified build prepared, obtain explicit approval before any custom physical flash. Test FM and MW audio, controls, offline use, clean exit and ordinary radio regression on the actual unit. No such custom build/flash approval has been inferred from the earlier upstream-update approval.
