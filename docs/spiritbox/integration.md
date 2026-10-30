@@ -71,11 +71,17 @@ Two five-second trials completed on COM3, 30 October 2026 around 16:05 Brisbane 
 | 200 ms | Forward | 25 | 203 / 203 / 204 ms | Status continued; original tuning restored |
 | 100 ms | Reverse | 46 | 109 / 109 / 110 ms | Status continued; original tuning restored |
 
-Owner explicitly reported audio audible throughout the trials. Host scheduling and serial overhead explain why the observed cadence exceeds the requested interval; no sample-accurate audio or tune-complete measurement was taken. Status updates are only every 500 ms, so these results do not certify every intermediate tuning command, exact receiver latency, all-band coverage, or native-mode timing. AM/MW and soft-mute/squelch overrides have not been tested.
+Owner explicitly reported audio audible throughout the FM trials. Host scheduling and serial overhead explain why the observed cadence exceeds the requested interval; no sample-accurate audio or tune-complete measurement was taken. Status updates are only every 500 ms, so these results do not certify every intermediate tuning command, exact receiver latency, all-band coverage, or native-mode timing. Soft-mute/squelch overrides have not been tested.
+
+### MW trial
+
+Two five-second MW2/AM trials completed on COM3 on 30 October 2026 around 16:09 Brisbane time, sweeping 702–810 kHz in 9 kHz steps. At requested 200 ms forward, 25 commands were sent at 203/203/204 ms min/median/max host intervals; at requested 100 ms reverse, 46 commands were sent at 109/109/110 ms. Both restored and verified the saved MW2 frequency of 783 kHz. Audio assessment is awaiting the owner's observation; command/telemetry success alone is not an audio result.
+
+The surrounding session returned to the original VHF/FM band and 106.50 MHz, confirmed by fresh telemetry. The first return check failed to confirm the band immediately after batched band commands; a new connection/status query already found VHF/FM, and the original frequency was reasserted and verified. For future multi-band trials, wait for fresh telemetry after each band change rather than checking a buffered status sample. The private session result is `.local/logs/mw-trial/result.json`; individual sweep logs remain in `.local/logs/usb-sweep/`. No firmware write or receiver audio-property change was performed.
 
 ## Acceptance before installing a native build
 
-1. Run a short MW trial on the correct antenna setup and confirm audible output, restoration and useful interval/step choices. Finish ordinary AM/SSB baseline checks separately.
+1. Obtain the owner's listening result for the completed MW trial; command execution and state restoration are verified. Repeat with appropriate antenna setup if needed. Finish ordinary AM/SSB baseline checks separately.
 2. Implement the small native module and integration points above; review the persistence paths before compiling. A future compile requires an explicit build request under root `AGENTS.md`.
 3. Check boundaries/wrap, both directions, interval changes, Stop/Start, field timeout, exit, sleep/off-timer, remote/web conflicts, pending saves and power-cycle restoration. Verify global theme/VFO/preferences remain unchanged, including unrelated saves during the mode.
 4. With a concrete verified build prepared, obtain explicit approval before any custom physical flash. Test FM and MW audio, controls, offline use, clean exit and ordinary radio regression on the actual unit. No such custom build/flash approval has been inferred from the earlier upstream-update approval.

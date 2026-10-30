@@ -14,7 +14,7 @@ Power on, connect a USB data cable, enable Settings -> USB Port -> Ad hoc, and s
 & ./.local/esptool/Scripts/python.exe tools/spiritbox/usb-sweep.py --port COM3 --lower-hz 90800000 --upper-hz 92000000 --step-hz 100000 --interval-ms 200 --seconds 5
 ```
 
-Add `--direction reverse` for reverse sweep. The upper endpoint must align with the lower endpoint and step. The utility does not switch bands. For MW2/AM, a useful short Australian-grid example is `--lower-hz 702000 --upper-hz 810000 --step-hz 9000 --interval-ms 200 --seconds 5`; MW audio has not yet been tested.
+Add `--direction reverse` for reverse sweep. The upper endpoint must align with the lower endpoint and step. The utility does not switch bands. For MW2/AM, a short Australian-grid example is `--lower-hz 702000 --upper-hz 810000 --step-hz 9000 --interval-ms 200 --seconds 5`; command execution and restoration have been exercised on the radio, with the owner listening assessment pending.
 
 Ctrl+C stops and attempts restoration, as does normal completion. Wait for the restoration result and check the displayed tuning. It preserves detected monitor enablement on the current connection, but disconnecting can reset the firmware's per-session monitor state. A USB disconnect or power failure may prevent restoration; inspect the starting status in the JSON log and restore manually if necessary. Upstream's normal tuning commands schedule band/VFO persistence; the prototype cannot guarantee recovery after forced termination.
 
