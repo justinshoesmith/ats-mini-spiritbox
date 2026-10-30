@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="400" viewBox="0 0 1280 400" role="img" aria-labelledby="title desc">
+  <title id="title">ATS Mini Spirit Box</title>
+  <desc id="desc">Purple radio waves and a small ghost on a dark background. Explore the space between stations.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#100b1c"/>
+      <stop offset="1" stop-color="#221035"/>
+    </linearGradient>
+    <linearGradient id="signal" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#a78bfa"/>
+      <stop offset="1" stop-color="#e9d5ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="400" rx="24" fill="url(#bg)"/>
+  <g fill="none" stroke="#9c6ae0" opacity=".13">
+    <circle cx="1070" cy="187" r="90"/>
+    <circle cx="1070" cy="187" r="142"/>
+    <circle cx="1070" cy="187" r="194"/>
+    <circle cx="1070" cy="187" r="246"/>
+  </g>
+  <path d="M0 334h310l17-15 17 30 17-48 17 65 17-83 17 102 17-129 17 129 17-102 17 83 17-65 17 48 17-30 17 15h663" fill="none" stroke="#a78bfa" stroke-width="2" opacity=".2"/>
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <text x="70" y="93" font-size="17" font-weight="600" letter-spacing="5" fill="#b9a4da">ATS MINI / ESP32-S3 + SI4732</text>
+    <text x="65" y="190" font-size="83" font-weight="700" letter-spacing="-3" fill="#faf5ff">Spirit Box</text>
+    <text x="70" y="243" font-size="25" fill="#cbb9e4">Explore the space between stations.</text>
+    <rect x="70" y="285" width="264" height="32" rx="16" fill="#352145"/>
+    <text x="88" y="307" font-size="13" font-weight="600" letter-spacing="2" fill="#e9d5ff">FM / MW · NATIVE · OFFLINE</text>
+  </g>
+  <g transform="translate(1010 113)">
+    <path d="M0 119V61C0 27 27 0 61 0s61 27 61 61v117l-21-18-20 18-20-18-20 18-20-18L0 178z" fill="url(#signal)"/>
+    <ellipse cx="43" cy="66" rx="9" ry="14" fill="#1b102c"/>
+    <ellipse cx="79" cy="66" rx="9" ry="14" fill="#1b102c"/>
+    <path d="M46 105q15 13 30 0" fill="none" stroke="#5b3b80" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g stroke="#9f7fca" opacity=".3">
+    <path d="M70 355v10m50-10v10m50-10v10m50-10v10m50-10v10m50-10v10m50-10v10m50-10v10m50-10v10m50-10v10m50-10v10m50-10v10m50-10v10m50-10v10m50-10v10m50-10v10m50-10v10m50-10v10m50-10v10m50-10v10m50-10v10m50-10v10m50-10v10m50-10v10"/>
+  </g>
+</svg>
