@@ -75,13 +75,17 @@ Owner explicitly reported audio audible throughout the FM trials. Host schedulin
 
 ### MW trial
 
-Two five-second MW2/AM trials completed on COM3 on 30 October 2026 around 16:09 Brisbane time, sweeping 702–810 kHz in 9 kHz steps. At requested 200 ms forward, 25 commands were sent at 203/203/204 ms min/median/max host intervals; at requested 100 ms reverse, 46 commands were sent at 109/109/110 ms. Both restored and verified the saved MW2 frequency of 783 kHz. Audio assessment is awaiting the owner's observation; command/telemetry success alone is not an audio result.
+Two five-second MW2/AM trials completed on COM3 on 30 October 2026 around 16:09 Brisbane time, sweeping 702–810 kHz in 9 kHz steps. At requested 200 ms forward, 25 commands were sent at 203/203/204 ms min/median/max host intervals; at requested 100 ms reverse, 46 commands were sent at 109/109/110 ms. Both restored and verified the saved MW2 frequency of 783 kHz. The owner missed listening to those first trials, so they do not establish an audio result.
 
 The surrounding session returned to the original VHF/FM band and 106.50 MHz, confirmed by fresh telemetry. The first return check failed to confirm the band immediately after batched band commands; a new connection/status query already found VHF/FM, and the original frequency was reasserted and verified. For future multi-band trials, wait for fresh telemetry after each band change rather than checking a buffered status sample. The private session result is `.local/logs/mw-trial/result.json`; individual sweep logs remain in `.local/logs/usb-sweep/`. No firmware write or receiver audio-property change was performed.
 
+Repeated the same range and directions for eight seconds each around 16:17 Brisbane time while the owner listened. The forward trial sent 40 commands, with host intervals 203/203/204 ms; reverse sent 74 commands, at 109/109/110 ms. Each restored 783 kHz, and the surrounding session restored and verified VHF/FM 106.50 MHz with volume 20. Owner reported **audible, with silent gaps**. The report does not distinguish which interval had more gaps or establish their cause. The repeat session result is `.local/logs/mw-trial/repeat-result.json`.
+
+Next audio experiment: compare the same MW range/interval with AM soft-mute attenuation temporarily set to zero, confirm squelch is off, then restore both prior settings and starting tuning. Do not assume the gaps are caused by soft-mute: receiver tune settling and reception conditions remain possible contributors. No audio-property override was performed in these trials.
+
 ## Acceptance before installing a native build
 
-1. Obtain the owner's listening result for the completed MW trial; command execution and state restoration are verified. Repeat with appropriate antenna setup if needed. Finish ordinary AM/SSB baseline checks separately.
+1. Investigate MW silent gaps with a controlled soft-mute/squelch comparison, preserving settings and tuning. FM is audible throughout at the tested intervals; MW continuity has not yet met that standard. Finish ordinary AM/SSB baseline checks separately.
 2. Implement the small native module and integration points above; review the persistence paths before compiling. A future compile requires an explicit build request under root `AGENTS.md`.
 3. Check boundaries/wrap, both directions, interval changes, Stop/Start, field timeout, exit, sleep/off-timer, remote/web conflicts, pending saves and power-cycle restoration. Verify global theme/VFO/preferences remain unchanged, including unrelated saves during the mode.
 4. With a concrete verified build prepared, obtain explicit approval before any custom physical flash. Test FM and MW audio, controls, offline use, clean exit and ordinary radio regression on the actual unit. No such custom build/flash approval has been inferred from the earlier upstream-update approval.
