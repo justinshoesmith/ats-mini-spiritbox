@@ -6,7 +6,7 @@ Recorded 30 October 2026. Distinguish owner reports from device measurements.
 | --- | --- |
 | Product | Owner reports AMNVOLT ATS Mini V4, received |
 | Installed firmware | USB monitor reports version 233 (v2.33), verified after backup; September 2025 date remains owner-reported |
-| Modification history | Owner reports no modifications or backup |
+| Modification history | Originally unmodified; original flash now backed up; upstream upgrade prepared but not performed |
 | MCU / receiver | esptool confirms ESP32-S3 (QFN56), revision v0.2, 40 MHz crystal; Si4732 remains owner-reported |
 | Enclosure / controls | Owner reports ABS case, colour display, rotary encoder, existing controls, USB-C and rechargeable battery |
 | Wireless | Owner reports Wi-Fi and Bluetooth capability; operation on installed firmware untested |
@@ -27,6 +27,8 @@ fe87b8c315a17ed054dc3e022a34d1c156cda68b9a21812fbb6819ec7f21f592
 ```
 
 Repository-local dump: `.local/backups/20261030T052039623Z/original-flash.bin`. Recovery copy: `%LOCALAPPDATA%/ATS Mini Spirit Box/Recovery/20261030T052039623Z/original-flash.bin`. Recovery directory permissions allow only the current Windows account and SYSTEM. Both copies are on the same computer/disk; an additional private offline copy is recommended for disk-loss protection. Logs, hash manifests, parsed partition/application metadata and display evidence remain private and are excluded from Git.
+
+A further SHA-256-verified, Explorer-accessible copy was placed in `Documents/ATS Mini Radio Recovery/20261030T052039623Z/`. The owner subsequently reported copying the recovery folder to Google Drive and approved proceeding with the upstream upgrade. Cloud-copy integrity has not been independently checked. Local original and Documents recovery hashes were reverified during upgrade preparation; see [upgrade record](upgrade.md).
 
 Offline partition inspection finds the existing application slots, settings, LittleFS, NVS and coredump within the first 8 MiB. The dump deliberately covers the full physical 16 MiB. The application descriptor contains Arduino core build metadata rather than the radio's displayed version; v2.33 was independently confirmed by the live USB monitor.
 

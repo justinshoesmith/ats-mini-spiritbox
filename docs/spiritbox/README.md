@@ -6,6 +6,7 @@ Phase 1 preservation, 30 October 2026 (Australia/Brisbane). **Original full-flas
 - [Backup, validation and recovery](backup-recovery.md)
 - [Development environment and source map](development.md)
 - [Scope and decisions](decisions.md)
+- [Prepared upstream upgrade and pending recovery check](upgrade.md)
 
 Repository: <https://github.com/justinshoesmith/ats-mini-spiritbox> (fork of <https://github.com/esp32-si4732/ats-mini>).
 
